@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="text/javascript" src="js/appDataStore.js"></script>
+    <script type="text/javascript" src="js/_extends.js"></script>
+    <script type="text/javascript" src="js/event-model.js"></script>
+    <script type="text/javascript" src="js/img-tools.js"></script>
+    <script type="text/javascript" src="js/mosaic.js"></script>
+    <script type="text/javascript" src="js/client.js"></script>
+    <title>Mosaic</title>
+
+    <style type="text/css">
+      body {
+        background-color: #eeeeee;
+        width: 100%;
+        overflow-x: hidden;
+        font-size: 1.1em;
+      }
+
+      #header{
+        width: 100%;
+        height: 70px;
+        border-bottom: 2px solid white;  
+        position: fixed;
+        top: 0;
+        z-index: 100;
+        background: #eeeeff;
+      }
+
+      input[type="file"] {
+        background: #999999;
+        color: #ffffff;
+        border: 4px solid white;
+        border-radius: 4px;
+        width: 26.1%; 
+      }
+
+      #loadingBar {
+        display: none;
+        margin: 8px auto;
+        width: 26.1%;
+      }
+
+      #progressBar {
+        display: none;
+      }
+
+      canvas { 
+        border: 8px solid white;
+        border-radius: 8px;
+        display: block;
+        margin: 10px auto;
+        max-width: calc(100% - 32px);
+        overflow-x: hidden;
+        background-color: #ffffff;
+      }
+
+      progress {
+        height: 30px;
+        border: 4px solid white;
+        border-radius: 4px;
+        width: 26.5%;
+      }
+
+      select, button {
+        height: 24px;
+      }
+
+      progress[value]::-webkit-progress-value {
+        background-image:
+           -webkit-linear-gradient(bottom left, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%),
+           -webkit-linear-gradient(rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)),
+           -webkit-linear-gradient(left, #09c, #f44);
+        background-image:
+           -o-linear-gradient(bottom left, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%),
+           -o-linear-gradient(rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)),
+           -o-linear-gradient(left, #09c, #f44);
+        background-image:
+           linear-gradient(to top right, transparent 33%, rgba(0, 0, 0, .1) 33%, rgba(0,0, 0, .1) 66%, transparent 66%),
+           linear-gradient(rgba(255, 255, 255, .25), rgba(0, 0, 0, .25)),
+           linear-gradient(to right, #09c, #f44);;
+      
+          background-size: 35px 20px, 100% 100%, 100% 100%;
+      }
+
+      #mainContainer {
+        position: relative;
+        top: 70px;
+      }
+
+      #timeInSecs {
+        position: relative;
+        top: -4px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Edit me. -->
+    <div id="header">
+      <div id="fileInputContainer">
+        <input type="file" id="fileInput" />
+        <select id="numWorkers">
+          <option value="0">No Workers</option>
+          <option value="1">1 Worker</option>
+          <option value="2">2 Workers</option>
+          <option value="3">3 Workers</option>
+          <option value="4">4 Workers</option>
+          <option value="5">5 Workers</option>
+          <option value="6">6 Workers</option>
+          <option value="7">7 Workers</option>
+          <option value="8">8 Workers</option>
+          <option value="9">9 Workers</option>
+          <option value="10">10 Workers</option>
+        </select>
+        <button id="clearCacheBtn">Clear local storage </button>
+      </div>
+      <div id="loadingBar">
+        LOADING IMAGE ...
+      </div>
+      <div id="fileInputContainer">
+        <progress id="progressBar" width="100%" max="100"></progress>
+        <span id="timeInSecs" />
+      </div>
+    </div>
+    <div id="mainContainer">
+      <canvas id="imageCanvas"></canvas>
+    <div>
+  </body>
+</html>

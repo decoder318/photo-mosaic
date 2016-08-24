@@ -1,0 +1,32 @@
+
+Note:- this solution is implemented both with and with out HTML5 Web Workers, 
+        HTML5 LocalStorage API is used to cache base64URL of the svg objects from the xhr's to the server
+
+
+1) First Implemented the solution with brute force, (later, deprecated it) (Needed to go through HTML5 canvas spec and svg basics)
+2) Implemented with web workers (needed to go through web workers - basics, and understand debugging. Nearly given up when couldn't debug)
+3) Had to implement a queue system for to limit the number of parallel xml-http-requests (for svg objects), as the browser crashes for large images
+4) Used localStorage to cache base64URLs of the svg objects from the xhr's.
+5) Re-Used the same methods for the implementation without web-workers
+6) Cleaned up, refactored and modularized the design to (M V *)
+7) Put some styling, and a simple and intutive UI for comparative benchmarking for various input-scenarios
+
+8) As a future note, a server-side cache could be implemented..
+  (eventhough there's minimal processing for the requests for the svg objects, caching on the server could improve performance).
+
+9) As a future note, use navigator.hardwareConcurrency (and a polyfill) as default number of workers.
+
+10) As a future note, I need to move the xhr queue system into its own class  
+
+/*revisions*/
+11) Used a global object for caching, instead of window.localStorage, as I found that localStorage has limitations and accessing it is slower
+12) Isolated the appDataStore module (if we need to alter the caching strategy, we just need to implement the methods getItem and setItem that need to be exposed
+13) Before the window is closed, I save appDataStore to window.localStorage for persistence
+14) I load appDataStore from localStorage in window.onload
+
+15) As a future note, let the server serve static css files as well! (Come on, don't be lazy)
+
+16) Committing it to a github repository (my first one).
+
+17) appDataStore is an unnecessary module, to be loaded. May as well just swith back to using an object inside the mosaic model. 
+  (You, who's reading this may let me know). 
